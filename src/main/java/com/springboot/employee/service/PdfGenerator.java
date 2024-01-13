@@ -1,12 +1,7 @@
 package com.springboot.employee.service;
 
-import java.io.ByteArrayInputStream;
-
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +29,7 @@ public class PdfGenerator {
 	private EmployeeRepository employeeRepository;
 
 	public byte[] createPDF() {
-		String pdfFilename = "example.pdf";
+		//String pdfFilename = "example.pdf";
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 		try {
