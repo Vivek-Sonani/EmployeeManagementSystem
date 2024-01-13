@@ -28,7 +28,7 @@ public class EmployeeSecurityConfig {
 		UserDetails user2 = User.withUsername("user2").password(encoder.encode("123")).roles("USER").build();
 		UserDetails user3 = User.withUsername("user3").password(encoder.encode("123")).roles("USER").build();
 		UserDetails user4 = User.withUsername("user4").password(encoder.encode("123")).roles("USER").build();
-		return new InMemoryUserDetailsManager(user1, user2, user3);
+		return new InMemoryUserDetailsManager(user1, user2, user3,user4);
 
 	}
 
