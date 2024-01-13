@@ -27,7 +27,6 @@ public class EmployeeSecurityConfig {
 		UserDetails user1 = User.withUsername("user1").password(encoder.encode("123")).roles("USER").build();
 		UserDetails user2 = User.withUsername("user2").password(encoder.encode("123")).roles("USER").build();
 		UserDetails user3 = User.withUsername("user3").password(encoder.encode("123")).roles("USER").build();
-
 		return new InMemoryUserDetailsManager(user1, user2, user3);
 
 	}
@@ -50,6 +49,5 @@ public class EmployeeSecurityConfig {
 	@Bean
 	AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
 		return configuration.getAuthenticationManager();
-
 	}
 }
