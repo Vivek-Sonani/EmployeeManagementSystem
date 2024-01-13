@@ -50,7 +50,6 @@ public class EmployeeServiceImp implements EmployeeService {
 
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-	// @Transactional
 	@Override
 	public List<Employee> getAllEmployee() {
 		List<Employee> list = employeeRepository.findAll();
