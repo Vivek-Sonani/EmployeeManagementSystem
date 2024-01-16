@@ -12,10 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@EntityListeners(AuditListner.class)
+@EntityListeners(value = { AuditListner.class, AuditingEntityListener.class })
 @Table(name = "address")
 public class Address {
 

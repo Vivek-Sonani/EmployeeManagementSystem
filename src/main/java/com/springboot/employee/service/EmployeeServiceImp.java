@@ -268,14 +268,14 @@ public class EmployeeServiceImp implements EmployeeService {
 
 		return dozerBeanMapper.map(list, List.class);
 	}
-	
+
 	@Override
 	public Employee patch(String id, Map<String, Object> employee) {
 		Employee dbEmployee = employeeRepository.findById(Integer.parseInt(id)).get();
 		employee.entrySet().forEach(entry -> {
-			if (StringUtils.equalsAnyIgnoreCase(entry.getKey(), "id")) {
-				return;
-			}
+//			if (StringUtils.equalsAnyIgnoreCase(entry.getKey(), "id")) {
+//				return;
+//			}
 			if (StringUtils.equalsAnyIgnoreCase(entry.getKey(), "address")) {
 				try {
 					if (entry.getValue() == null) {
@@ -291,7 +291,7 @@ public class EmployeeServiceImp implements EmployeeService {
 					return;
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace(); 
+					e.printStackTrace();
 				}
 			}
 			try {
@@ -322,8 +322,6 @@ public class EmployeeServiceImp implements EmployeeService {
 				e.printStackTrace();
 			}
 		});
-
 		return addressRepository.save(dbAddress);
 	}
-
 }
