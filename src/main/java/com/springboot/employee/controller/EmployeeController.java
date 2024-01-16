@@ -1,7 +1,7 @@
 package com.springboot.employee.controller;
 
 import java.util.List;
-
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.dozer.DozerBeanMapper;
@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -122,6 +123,12 @@ public class EmployeeController {
 		headers.setContentDispositionFormData(fileName, fileName);
 		headers.setContentType(MediaType.APPLICATION_PDF);
 		return ResponseEntity.ok().headers(headers).body(pdf);
+
+	}
+
+	@PatchMapping("/change/{id}")
+	public Employee patch(@PathVariable("id") String id, @RequestBody Map<String, Object> employee) {
+		return employeeService.patch(id, employee);
 
 	}
 
