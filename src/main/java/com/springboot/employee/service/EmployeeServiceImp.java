@@ -1,7 +1,9 @@
 package com.springboot.employee.service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -14,6 +16,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,9 +30,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itextpdf.io.util.IntHashtable.Entry;
 import com.springboot.employee.model.Address;
 import com.springboot.employee.model.Employee;
 import com.springboot.employee.model.Employee_;
+import com.springboot.employee.repository.AddressRepository;
 import com.springboot.employee.repository.EmployeeRepository;
 
 @Service
@@ -46,7 +54,13 @@ public class EmployeeServiceImp implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	@Autowired
+	private AddressRepository addressRepository;
+
+	@Autowired
 	private AddressService addressService;
+
+	@Autowired
+	private ObjectMapper mapper;
 
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -253,6 +267,63 @@ public class EmployeeServiceImp implements EmployeeService {
 		List<Employee> list = query.getResultList();
 
 		return dozerBeanMapper.map(list, List.class);
+	}
+
+	@Override
+	public Employee patch(String id, Map<String, Object> employee) {
+		Employee dbEmployee = employeeRepository.findById(Integer.parseInt(id)).get();
+		employee.entrySet().forEach(entry -> {
+			if (StringUtils.equalsAnyIgnoreCase(entry.getKey(), "id")) {
+				return;
+			}
+			if (StringUtils.equalsAnyIgnoreCase(entry.getKey(), "address")) {
+				try {
+					if (entry.getValue() == null) {
+						deleteExistingAddress(dbEmployee.getAddress());
+						return;
+					}
+					String addressJson = mapper.writeValueAsString(entry.getValue());
+					@SuppressWarnings("unchecked")
+					HashMap<String, Object> address = mapper.readValue(addressJson, HashMap.class);
+					Integer addressId = dbEmployee.getAddress() == null ? null : dbEmployee.getAddress().getId();
+					Address updatedAddress = patchAddress(addressId, address, dbEmployee);
+					dbEmployee.setAddress(updatedAddress);
+					return;
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			try {
+				PropertyUtils.setProperty(dbEmployee, entry.getKey(), entry.getValue());
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		});
+		Employee updatedEmployee = employeeRepository.save(dbEmployee);
+		return dozerBeanMapper.map(updatedEmployee, Employee.class);
+	}
+
+	private void deleteExistingAddress(Address address) {
+		if (address == null) {
+			return;
+		}
+		addressRepository.delete(address);
+	}
+
+	private Address patchAddress(Integer addressId, Map<String, Object> address, Employee dbEmployee) {
+		Address dbAddress = addressId == null ? new Address() : addressRepository.findById(addressId).get();
+		dbAddress.setEmployee(dbEmployee);
+		// same as above for address
+		address.entrySet().forEach(entry -> {
+			try {
+				PropertyUtils.setProperty(dbAddress, entry.getKey(), entry.getValue());
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		});
+
+		return addressRepository.save(dbAddress);
 	}
 
 }

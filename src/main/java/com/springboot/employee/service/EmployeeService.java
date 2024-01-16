@@ -1,6 +1,7 @@
 package com.springboot.employee.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -30,5 +31,7 @@ public interface EmployeeService {
 	List<Employee> findByName(String firstname);
 
 	List<Employee> findByPosition(String position);
+
+	Employee patch(String id, Map<String, Object> employee);
 
 }
