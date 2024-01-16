@@ -29,13 +29,13 @@ public class PdfGenerator {
 	private EmployeeRepository employeeRepository;
 
 	public byte[] createPDF() {
-		//String pdfFilename = "example.pdf";
+		// String pdfFilename = "example.pdf";
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 		try {
 			List<Employee> emp = employeeRepository.findAll();
 
-		//	OutputStream file = new FileOutputStream(new File(pdfFilename));
+			// OutputStream file = new FileOutputStream(new File(pdfFilename));
 			Document document = new Document();
 			PdfWriter writer = PdfWriter.getInstance(document, out);
 
@@ -86,7 +86,7 @@ public class PdfGenerator {
 
 			document.close();
 
-			//file.close();
+			// file.close();
 
 			System.out.println("Pdf created successfully..");
 
