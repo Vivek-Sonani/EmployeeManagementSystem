@@ -1,14 +1,12 @@
 package com.springboot.employee.config;
 
 import java.util.Arrays;
-
 import java.util.Collections;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 @Configuration
 public class DozerConfiguration {
