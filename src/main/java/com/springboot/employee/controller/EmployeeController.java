@@ -32,7 +32,7 @@ import com.springboot.employee.specification.EmployeeSpecification;
 @RestController
 @RequestMapping("/emp")
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class EmployeeController {
+public class EmployeeController{
 
 	@Autowired
 	private EmployeeService employeeService;
@@ -130,5 +130,4 @@ public class EmployeeController {
 		return employeeService.patch(id, employee);
 
 	}
-
 }
