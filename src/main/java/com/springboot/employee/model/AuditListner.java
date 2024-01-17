@@ -1,7 +1,6 @@
 package com.springboot.employee.model;
 
 import javax.persistence.PostPersist;
-
 import javax.persistence.PostRemove;
 import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
