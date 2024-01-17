@@ -1,7 +1,7 @@
 package com.springboot.employee.service;
 
 import java.io.ByteArrayOutputStream;
-
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import com.springboot.employee.model.Employee;
 import com.springboot.employee.repository.EmployeeRepository;
 
 @Service
-public class PdfGenerator {
+public class PdfGenerator{
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -34,7 +34,8 @@ public class PdfGenerator {
 
 		try {
 			List<Employee> emp = employeeRepository.findAll();
-
+			Collections.sort(emp,new PositionComparator());
+			System.out.println(emp);
 			// OutputStream file = new FileOutputStream(new File(pdfFilename));
 			Document document = new Document();
 			PdfWriter writer = PdfWriter.getInstance(document, out);
@@ -208,5 +209,4 @@ public class PdfGenerator {
 		cell.setBorder(0);
 		return cell;
 	}
-
 }
