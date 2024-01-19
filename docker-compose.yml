@@ -1,0 +1,51 @@
+version: '3'
+services:
+#  mysql:
+#    image: mysql:8
+#    container_name: mysqldb
+#    environment:
+#      MYSQL_ROOT_PASSWORD: dreamw0rld
+#      MYSQL_DATABASE: empmanagement
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: dreamw0rld
+#      restart: always
+#    ports:
+#      - "3307:3307"
+
+#  empmanagement-app:
+#    image: employeemanagementsystem:0.0.1-snapshot
+#    container_name: empmanagement-app
+#    depends_on:
+#      - mysql
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.0.52:3307/empmanagement
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: dreamw0rld
+#    ports:
+#      - "8081:8081"
+
+  empmanagement-app:
+    image: employeemanagementsystem:0.0.1-snapshot
+    container_name: empmanagement-app
+#    networks:
+#     my_network:
+#        ipv4_address: 10.5.0.1
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.0.52:3306/empmanagement
+      SPRING_DATASOURCE_USERNAME: vivek
+      SPRING_DATASOURCE_PASSWORD: 'Admin-123456'
+    ports:
+      - "8080:8080"
+#networks:
+#  my_network:
+#    ipam:
+#      config:
+#        - subnet: 192.168.16.2/
+#networks:
+#  static-network:
+#    ipam:
+#      config:
+#        - subnet: 10.5.0.0/16
+        
+        
