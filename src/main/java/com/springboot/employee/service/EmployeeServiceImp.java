@@ -265,7 +265,8 @@ public class EmployeeServiceImp implements EmployeeService {
 		LOGGER.info(query.getResultList().toString());
 		List<Employee> list = query.getResultList();
 
-		return dozerBeanMapper.map(list, List.class);
+	 return list.stream().map(e -> dozerBeanMapper.map(e, Employee.class, "employee-full"))
+				.collect(Collectors.toList());
 	}
 
 	@Override
