@@ -2,6 +2,7 @@ package com.springboot.employee.service;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class PdfGenerator{
 
 		try {
 			List<Employee> emp = employeeRepository.findAll();
-			Collections.sort(emp,new PositionComparator());
+			Comparator<Employee> cmp  = Comparator.comparing(Employee::getPosition)
+					                              .thenComparing(Employee::getFirstname);
+			Collections.sort(emp,cmp);
 			System.out.println(emp);
 			// OutputStream file = new FileOutputStream(new File(pdfFilename));
 			Document document = new Document();
