@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping map-id="employee-id-name" wildcard="false">
+		<class-a>com.springboot.employee.model.Employee</class-a>
+		<class-b>com.springboot.employee.model.Employee</class-b>
+		<field>
+			<a>employId</a>
+			<b>employId</b>
+		</field>
+		<field>
+			<a>firstname</a>
+			<b>firstname</b>
+		</field>
+	</mapping>
+	<mapping map-id="employee-full" wildcard="false">
+		<class-a>com.springboot.employee.model.Employee</class-a>
+		<class-b>com.springboot.employee.model.Employee</class-b>
+		<field>
+			<a>employId</a>
+			<b>employId</b>
+		</field>
+		<field>
+			<a>firstname</a>
+			<b>firstname</b>
+		</field>
+		<field>
+			<a>middlename</a>
+			<b>middlename</b>
+		</field>
+		<field>
+			<a>lastname</a>
+			<b>lastname</b>
+		</field>
+		<field>
+			<a>email</a>
+			<b>email</b>
+		</field>
+		<field>
+			<a>position</a>
+			<b>position</b>
+		</field>
+		<field>
+			<a>contactNo</a>
+			<b>contactNo</b>
+		</field>
+		<field>
+			<a>salary</a>
+			<b>salary</b>
+		</field>
+		<field>
+			<a>createdDate</a>
+			<b>createdDate</b>
+		</field>
+		<field>
+			<a>modifiedDate</a>
+			<b>modifiedDate</b>
+		</field>
+		<field>
+			<a>createdBy</a>
+			<b>createdBy</b>
+		</field>
+		<field>
+			<a>modifiedBy</a>
+			<b>modifiedBy</b>
+		</field>
+		<field map-id="address-full">
+			<a>address</a>
+			<b>address</b>
+		</field>
+		<field map-id="family-info-basic">
+			<a>familyInfo</a>
+			<b>familyInfo</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="family-info-basic" wildcard="false">
+		<class-a>com.springboot.employee.model.FamilyInfo</class-a>
+		<class-b>com.springboot.employee.model.FamilyInfo</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+		<field>
+			<a>relationship</a>
+			<b>relationship</b>
+		</field>
+		<field>
+			<a>dob</a>
+			<b>dob</b>
+		</field>
+		<field>
+			<a>occupation</a>
+			<b>occupation</b>
+		</field>
+		<field>
+			<a>createdDate</a>
+			<b>createdDate</b>
+		</field>
+		<field>
+			<a>modifiedDate</a>
+			<b>modifiedDate</b>
+		</field>
+
+	</mapping>
+	<mapping map-id="address-full" wildcard="false">
+		<class-a>com.springboot.employee.model.Address</class-a>
+		<class-b>com.springboot.employee.model.Address</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>city</a>
+			<b>city</b>
+		</field>
+		<field>
+			<a>state</a>
+			<b>state</b>
+		</field>
+	</mapping>
+</mappings>
