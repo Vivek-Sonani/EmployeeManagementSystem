@@ -2,8 +2,6 @@ package com.springboot.employee;
 
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
-
 import org.apache.commons.collections.CollectionUtils;
 
 import org.springframework.boot.SpringApplication;
