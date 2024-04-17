@@ -21,33 +21,38 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class EmployeeSecurityConfig {
 
-	@Bean
-	UserDetailsService userDetailsService(PasswordEncoder encoder) {
-		UserDetails user1 = User.withUsername("user1").password(encoder.encode("123")).roles("USER").build();
-		UserDetails user2 = User.withUsername("user2").password(encoder.encode("123")).roles("USER").build();
-		UserDetails user3 = User.withUsername("user3").password(encoder.encode("123")).roles("USER").build();
-		UserDetails user4 = User.withUsername("user4").password(encoder.encode("123")).roles("USER").build();
-		return new InMemoryUserDetailsManager(user1, user2, user3,user4);
+  @Bean
+  UserDetailsService userDetailsService(PasswordEncoder encoder) {
+    UserDetails user1 =
+        User.withUsername("user1").password(encoder.encode("123")).roles("USER").build();
+    UserDetails user2 =
+        User.withUsername("user2").password(encoder.encode("123")).roles("USER").build();
+    UserDetails user3 =
+        User.withUsername("user3").password(encoder.encode("123")).roles("USER").build();
+    UserDetails user4 =
+        User.withUsername("user4").password(encoder.encode("123")).roles("USER").build();
+    return new InMemoryUserDetailsManager(user1, user2, user3, user4);
 
-	}
+  }
 
-	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(csrf -> csrf.disable());
-		http.httpBasic(withDefaults());
-		http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/emp/add/").authenticated().antMatchers("/emp/**")
-				.authenticated();
+  @Bean
+  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.csrf(csrf -> csrf.disable());
+    http.httpBasic(withDefaults());
+    http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/emp/add/").authenticated()
+        .antMatchers("/emp/**").authenticated();
 
-		return http.build();
-	}
+    return http.build();
+  }
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-		return configuration.getAuthenticationManager();
-	}
+  @Bean
+  AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
+      throws Exception {
+    return configuration.getAuthenticationManager();
+  }
 }
