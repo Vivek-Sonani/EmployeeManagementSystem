@@ -46,5 +46,4 @@
 //		// authentication class
 //		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 //	}
-//
 //}
