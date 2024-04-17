@@ -14,60 +14,59 @@ import com.springboot.employee.repository.AddressRepository;
 
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
-public class AddressServiceImp implements AddressService{
-	@Autowired
-	private AddressRepository addressRepository;
-	
-	@Autowired
-	private EntityManager entityManager;
+public class AddressServiceImp implements AddressService {
+  @Autowired
+  private AddressRepository addressRepository;
 
-	@Override
-	public Address addAddress(Address address) {
-		// TODO Auto-generated method stub
-		Address add = addressRepository.save(address);
-		return add;
-	}
+  @Autowired
+  private EntityManager entityManager;
 
-	@Override
-	public Address updateAddress(Address address) {
-		System.out.println(address.getId());
-		Optional<Address> optionalAddress = addressRepository.findById(address.getId());
-		if(optionalAddress.isPresent()) {
-			Address add = optionalAddress.get();
-			add.setCity(address.getCity());
-			add.setState(address.getState());
-		Address a = addressRepository.save(add);
-		entityManager.flush();
-		System.out.println("save address -> " + a);
-			return a;
-		}else {
-			System.out.println("null return");
-			return null;
-		}
-		
-	}
+  @Override
+  public Address addAddress(Address address) {
+    // TODO Auto-generated method stub
+    Address add = addressRepository.save(address);
+    return add;
+  }
 
-	@Override
-	public void removeAddress(Address dbAddress) {
-		// TODO Auto-generated method stub
-//		Optional<Address> optionalAddress=addressRepository.findById(dbAddress.getId());
-//		if(optionalAddress.isPresent()) {
-		 addressRepository.deleteById(dbAddress.getId());
-		//}
-		
-	}
+  @Override
+  public Address updateAddress(Address address) {
+    System.out.println(address.getId());
+    Optional<Address> optionalAddress = addressRepository.findById(address.getId());
+    if (optionalAddress.isPresent()) {
+      Address add = optionalAddress.get();
+      add.setCity(address.getCity());
+      add.setState(address.getState());
+      Address a = addressRepository.save(add);
+      entityManager.flush();
+      System.out.println("save address -> " + a);
+      return a;
+    } else {
+      System.out.println("null return");
+      return null;
+    }
 
-	@Override
-	public Address getAddress(Address address) {
-		// TODO Auto-generated method stub
-		Optional<Address> optionalAddress = addressRepository.findById(address.getId());
-		if(optionalAddress.isPresent()) {
-			return optionalAddress.get();
-		}
-		return null;
-	}
+  }
 
-	
-	
+  @Override
+  public void removeAddress(Address dbAddress) {
+    // TODO Auto-generated method stub
+    // Optional<Address> optionalAddress=addressRepository.findById(dbAddress.getId());
+    // if(optionalAddress.isPresent()) {
+    addressRepository.deleteById(dbAddress.getId());
+    // }
+
+  }
+
+  @Override
+  public Address getAddress(Address address) {
+    // TODO Auto-generated method stub
+    Optional<Address> optionalAddress = addressRepository.findById(address.getId());
+    if (optionalAddress.isPresent()) {
+      return optionalAddress.get();
+    }
+    return null;
+  }
+
+
 
 }
