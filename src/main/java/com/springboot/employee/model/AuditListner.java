@@ -9,34 +9,34 @@ import javax.persistence.PreUpdate;
 
 public class AuditListner {
 
-	@PrePersist
-	public void onCreate(Object entity) {
-		System.out.println("entity will be created....");
-	}
+  @PrePersist
+  public void onCreate(Object entity) {
+    System.out.println("entity will be created....");
+  }
 
-	@PreUpdate
-	public void onUpdate(Object entity) {
-		System.out.println("entity will be updated....");
-	}
+  @PreUpdate
+  public void onUpdate(Object entity) {
+    System.out.println("entity will be updated....");
+  }
 
-	@PreRemove
-	public void onRemove(Object entity) {
-		System.out.println("entity will be remove....");
-	}
+  @PreRemove
+  public void onRemove(Object entity) {
+    System.out.println("entity will be remove....");
+  }
 
-	@PostPersist
-	public void postCreate(Object entity) {
-		System.out.println("entity created....");
-	}
+  @PostPersist
+  public void postCreate(Object entity) {
+    System.out.println("entity created....");
+  }
 
-	@PostUpdate
-	public void postUpdate(Object entity) {
-		System.out.println("entity Updated....");
-	}
+  @PostUpdate
+  public void postUpdate(Object entity) {
+    System.out.println("entity Updated....");
+  }
 
-	@PostRemove
-	public void postRemove(Object entity) {
-		System.out.println("entity removed....");
-	}
+  @PostRemove
+  public void postRemove(Object entity) {
+    System.out.println("entity removed....");
+  }
 
 }
