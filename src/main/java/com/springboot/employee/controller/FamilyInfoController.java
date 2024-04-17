@@ -22,32 +22,33 @@ import com.springboot.employee.service.FamilyInfoService;
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class FamilyInfoController {
 
-	@Autowired
-	private FamilyInfoService familyInfoService;
-	
-	@GetMapping("/id/{employeeId}")
-	public List<FamilyInfo> getAll(@PathVariable("employeeId") Integer employeeId){
-		return familyInfoService.getByEmployeeId(employeeId);
-	}
+  @Autowired
+  private FamilyInfoService familyInfoService;
 
-	@PostMapping("/add")
-	public FamilyInfo addFamily(@RequestBody FamilyInfo familyInfo) {
-		System.out.println("Controller starting...");
-		return familyInfoService.addFamilyInfo(familyInfo);
-	}
+  @GetMapping("/id/{employeeId}")
+  public List<FamilyInfo> getAll(@PathVariable("employeeId") Integer employeeId) {
+    return familyInfoService.getByEmployeeId(employeeId);
+  }
 
-	@PutMapping("/update")
-	public FamilyInfo updateFamily(@RequestBody FamilyInfo familyInfo) {
-		return familyInfoService.updateFamilyInfo(familyInfo);
-	}
-	
-	@GetMapping("/{id}")
-	public FamilyInfo get(@PathVariable("id") Integer id){
-		return familyInfoService.getFamilyInfo(id);
-	}
-	@DeleteMapping("/remove/{id}")
-	public void remove(@PathVariable("id") Integer id) {
-		familyInfoService.removeFamilyInfo(id);
-	}
+  @PostMapping("/add")
+  public FamilyInfo addFamily(@RequestBody FamilyInfo familyInfo) {
+    System.out.println("Controller starting...");
+    return familyInfoService.addFamilyInfo(familyInfo);
+  }
+
+  @PutMapping("/update")
+  public FamilyInfo updateFamily(@RequestBody FamilyInfo familyInfo) {
+    return familyInfoService.updateFamilyInfo(familyInfo);
+  }
+
+  @GetMapping("/{id}")
+  public FamilyInfo get(@PathVariable("id") Integer id) {
+    return familyInfoService.getFamilyInfo(id);
+  }
+
+  @DeleteMapping("/remove/{id}")
+  public void remove(@PathVariable("id") Integer id) {
+    familyInfoService.removeFamilyInfo(id);
+  }
 
 }
