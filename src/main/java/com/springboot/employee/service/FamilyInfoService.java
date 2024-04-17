@@ -6,16 +6,16 @@ import com.springboot.employee.model.FamilyInfo;
 
 public interface FamilyInfoService {
 
-	FamilyInfo addFamilyInfo(FamilyInfo familyInfo);
+  FamilyInfo addFamilyInfo(FamilyInfo familyInfo);
 
-	FamilyInfo updateFamilyInfo(FamilyInfo familyInfo);
+  FamilyInfo updateFamilyInfo(FamilyInfo familyInfo);
 
-	FamilyInfo getFamilyInfo(Integer id);
+  FamilyInfo getFamilyInfo(Integer id);
 
-	//List<FamilyInfo> getAllFamilyInfo(FamilyInfo familyInfo);
+  // List<FamilyInfo> getAllFamilyInfo(FamilyInfo familyInfo);
 
-	List<FamilyInfo> getByEmployeeId(Integer employeeId);
+  List<FamilyInfo> getByEmployeeId(Integer employeeId);
 
-	void removeFamilyInfo(Integer id);
+  void removeFamilyInfo(Integer id);
 
 }
